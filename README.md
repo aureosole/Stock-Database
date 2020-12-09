@@ -180,6 +180,19 @@ def update_pop():
         conn.close()
     except:
         response = messagebox.showerror("","Enter a record #")
+	
+def delete2():
+    conn = sqlite3.connect("stock.db")
+    c=conn.cursor()
+
+    c.execute("DELETE FROM stocks WHERE OID=" + update_e.get())
+    
+    update_e.delete(0, END)
+    pop.destroy()
+
+    conn.commit()
+    conn.close()
+	
 def sell():
     try:
         conn = sqlite3.connect("stock.db")
